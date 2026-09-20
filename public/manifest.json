@@ -1,0 +1,16 @@
+{
+  "name": "Muhammed Rizal N P | Software Engineer",
+  "short_name": "Rizal.dev",
+  "description": "Portfolio of Muhammed Rizal N P, a Software Engineer specializing in ASP.NET Core, C#, React, scalable backend systems, enterprise applications, and AI engineering.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/profile.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
