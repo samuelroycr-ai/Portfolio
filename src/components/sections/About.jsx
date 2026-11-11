@@ -30,7 +30,7 @@ const About = () => {
 
     return (
         <Section id="about" className="bg-dark-bg relative overflow-hidden">
-            <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
                 {/* Text Content */}
                 <div className="relative z-10">
@@ -60,13 +60,13 @@ const About = () => {
                     {/* Stats Grid */}
                     <div className="grid grid-cols-2 gap-3 sm:gap-4 mt-10">
                         {stats.map((stat, index) => (
-                            <Card key={index} className="p-3 sm:p-4 flex items-center gap-2.5 sm:gap-4 hover:border-neon-green/40 transition-colors group min-w-0">
-                                <div className="p-2 rounded-lg bg-white/5 group-hover:bg-neon-green/10 transition-colors shrink-0">
+                            <Card key={index} className="p-2.5 sm:p-4 flex items-center gap-2 sm:gap-4 hover:border-neon-green/40 transition-colors group min-w-0">
+                                <div className="p-1.5 sm:p-2 rounded-lg bg-white/5 group-hover:bg-neon-green/10 transition-colors shrink-0">
                                     <stat.icon className="text-neon-green" size={20} />
                                 </div>
                                 <div className="flex flex-col min-w-0">
-                                    <span className="font-display font-bold text-white text-sm sm:text-lg leading-snug break-words">{stat.value}</span>
-                                    <span className="text-[9px] sm:text-xs text-gray-500 uppercase tracking-wider whitespace-nowrap">{stat.label}</span>
+                                    <span className="font-display font-bold text-white text-[15px] sm:text-lg leading-snug break-words">{stat.value}</span>
+                                    <span className="text-[10px] sm:text-xs text-gray-500 uppercase tracking-normal sm:tracking-wider whitespace-nowrap">{stat.label}</span>
                                 </div>
                             </Card>
                         ))}
@@ -74,8 +74,8 @@ const About = () => {
                 </div>
 
                 {/* Visual Node */}
-                <div className="flex justify-center md:justify-end relative">
-                    <SystemGraph className="w-full max-w-sm aspect-square md:w-[400px] md:h-[400px]" />
+                <div className="flex justify-center lg:justify-end relative">
+                    <SystemGraph className="w-full max-w-sm aspect-square lg:w-[400px] lg:h-[400px]" />
                 </div>
 
             </div>
