@@ -2,87 +2,224 @@ import React from 'react';
 import Section from '../ui/Section';
 import TextReveal from '../ui/TextReveal';
 import { cn } from '../../utils/cn';
-import { ArrowUpRight, Cpu, Calendar, Globe, ShieldCheck } from 'lucide-react';
+import { ArrowUpRight, GraduationCap, BarChart3, Presentation, Landmark, Video, UserCheck, Fingerprint, IdCard, Bot, FileSearch, Banknote, ShieldAlert, Wallet } from 'lucide-react';
 
-// --- DATA ---
 const PROJECTS = [
     {
-        id: 'nikki',
-        title: 'NIKKI AI OS',
-        subtitle: 'Personal AI Desktop Operating System',
-        category: 'AI SYSTEM / DESKTOP APPLICATION',
-        featured: true,
-        description: 'A modular AI desktop operating system designed around context, memory, intelligent task execution, multi-provider AI orchestration, and desktop automation.',
+        id: 'ai-education',
+        title: 'AI-Powered Education Solutions',
+        subtitle: 'AI-Based Educational Products',
+        category: 'EDUCATION TECHNOLOGY',
+        featured: false,
+        description: 'Demonstrated AI-based educational products to schools, explained digital learning applications, and supported school management and teachers in understanding technology-enabled teaching methods.',
         capabilities: [
-            'Context management & persistent memory',
-            'Intent detection & task planning',
-            'Extensible tool registry & execution engine',
-            'Conversation management & learning capabilities',
-            'Desktop automation & voice interaction',
-            'WebSocket communication & text-to-speech',
-            'Knowledge retrieval & project management'
+            'Product demonstrations of AI-based educational products for school management',
+            'Explained digital learning applications and technology-enabled teaching methods',
+            'Guided teachers and principals through AI integration in modern classrooms',
+            'Presented solutions aligned with each school’s business requirements'
         ],
-        technologies: ['Electron', 'React', 'TypeScript', 'FastAPI', 'Python', 'SQLite', 'WebSockets', 'OpenAI', 'Gemini', 'Anthropic', 'Ollama', 'OpenRouter'],
-        concepts: ['Modular architecture', 'AI-agent workflows', 'Provider abstraction', 'Automatic fallback', 'Health checks', 'Automated testing', 'Tool-based execution'],
-        link: 'https://github.com/risalsalu',
-        icon: Cpu
+        technologies: ['Product Demos', 'Digital Learning', 'AI Integration', 'Presentations'],
+        concepts: ['EdTech', 'Classroom Transformation', 'Teacher Enablement'],
+        link: '#projects',
+        icon: GraduationCap
     },
     {
-        id: 'servexa',
-        title: 'SERVEXA',
-        subtitle: 'Salon & Spa Booking Platform',
-        category: 'FULL-STACK WEB APPLICATION',
+        id: 'student-analytics',
+        title: 'Student Performance Analytics',
+        subtitle: 'Academic Data & Insights',
+        category: 'EDUCATION TECHNOLOGY',
         featured: false,
-        description: 'A full-stack salon and spa booking platform combining React frontend development with ASP.NET Core backend services.',
+        description: 'Introduced academic data analytics through student assessment reports, performance monitoring, learning-gap identification, and data-driven insights to support academic improvement.',
         capabilities: [
-            'Booking management',
-            'User management & service management',
-            'JWT authentication for Admin, Owner, and Customer',
-            'Role-based authorization & access control',
-            'Responsive UI optimized for desktop and mobile'
+            'Student assessment reports and performance monitoring',
+            'Learning-gap identification from academic data',
+            'Data-driven insights for academic decision-making',
+            'Progress reporting for school management'
         ],
-        technologies: ['React.js', 'Tailwind CSS', 'ASP.NET Core Web API', 'JWT', 'Dapper'],
-        concepts: ['Clean Architecture', 'RESTful APIs', 'Role-Based Access Control', 'Secure authentication', 'Responsive UI', 'Full-stack application development'],
-        link: 'https://github.com/risalsalu',
-        icon: Calendar
+        technologies: ['Assessment Reports', 'Performance Monitoring', 'Analytics', 'MIS Reporting'],
+        concepts: ['Student Analytics', 'Data-Driven Decisions', 'Academic Improvement'],
+        link: '#projects',
+        icon: BarChart3
+    },
+    {
+        id: 'school-implementation',
+        title: 'School Implementation & Teacher Training',
+        subtitle: 'On-Site Rollout & Adoption',
+        category: 'EDUCATION TECHNOLOGY',
+        featured: false,
+        description: 'Coordinated on-site implementation activities with school management and teachers, communicated feedback to development teams, and conducted practical product training to support adoption.',
+        capabilities: [
+            'On-site implementation coordination with school management',
+            'Requirement and feedback communication to development teams',
+            'Practical face-to-face product training for teachers',
+            'Adoption support throughout the rollout'
+        ],
+        technologies: ['Implementation Coordination', 'User Training', 'Feedback Loops'],
+        concepts: ['Change Enablement', 'Product Adoption', 'Stakeholder Training'],
+        link: '#projects',
+        icon: Presentation
+    },
+    {
+        id: 'sib-core-banking',
+        title: 'South Indian Bank – Core Banking & Onboarding',
+        subtitle: 'Core Banking & ETB/NTB Workflows',
+        category: 'CORE BANKING / DIGITAL BANKING',
+        featured: true,
+        description: 'Worked on SIB Core Banking and ETB/NTB onboarding workflows — coordinating requirements, development activities, mock bank API integration, testing, and project progress through bank UAT.',
+        capabilities: [
+            'Requirements and development coordination for core banking workflows',
+            'ETB / NTB digital onboarding process support',
+            'Mock bank API integration and testing coordination',
+            'Project progress tracking through bank UAT'
+        ],
+        technologies: ['Core Banking', 'ETB / NTB Onboarding', 'API Integration', 'UAT', 'Jira'],
+        concepts: ['Bank Workflows', 'Digital Onboarding', 'Delivery Coordination'],
+        link: '#projects',
+        icon: Landmark
+    },
+    {
+        id: 'acemoney-vkyc',
+        title: 'Agentless Video KYC – AceMoney',
+        subtitle: 'Remote KYC Verification',
+        category: 'DIGITAL KYC / COMPLIANCE',
+        featured: false,
+        description: 'Worked on an Agentless VKYC solution — supporting business requirements, functional documentation, development coordination, testing, and delivery activities throughout the project lifecycle.',
+        capabilities: [
+            'Business requirements for agentless video verification flows',
+            'Functional documentation and development coordination',
+            'Testing activities and delivery tracking',
+            'Lifecycle support from discovery through release'
+        ],
+        technologies: ['VKYC', 'FSD', 'User Stories', 'Testing', 'UAT'],
+        concepts: ['Remote Verification', 'Compliance Workflows', 'Delivery'],
+        link: '#projects',
+        icon: Video
+    },
+    {
+        id: 'ntt-vkyc',
+        title: 'Video KYC – NTT DATA',
+        subtitle: 'Video KYC Solution Delivery',
+        category: 'DIGITAL KYC',
+        featured: false,
+        description: 'Supported requirement understanding, functional coordination, development follow-ups, testing activities, and delivery coordination for a Video KYC solution.',
+        capabilities: [
+            'Requirement understanding and functional coordination',
+            'Development follow-ups and issue tracking',
+            'Testing coordination with delivery teams'
+        ],
+        technologies: ['VKYC', 'Requirements', 'Functional Coordination', 'Testing'],
+        concepts: ['KYC', 'Stakeholder Coordination', 'Quality Assurance'],
+        link: '#projects',
+        icon: UserCheck
+    },
+    {
+        id: 'uae-pass',
+        title: 'UAE Pass – Digital Identity & Onboarding',
+        subtitle: 'Digital Identity Authentication',
+        category: 'DIGITAL IDENTITY / ONBOARDING',
+        featured: false,
+        description: 'Worked on UAE Pass authentication and digital onboarding workflows — supporting functional requirements, identity verification processes, integration coordination, and customer onboarding activities.',
+        capabilities: [
+            'Functional requirements for UAE Pass authentication flows',
+            'Identity verification process documentation',
+            'Integration coordination across identity and onboarding systems',
+            'Customer onboarding workflow support'
+        ],
+        technologies: ['UAE Pass', 'Identity Verification', 'API Integration', 'Onboarding'],
+        concepts: ['Digital Identity', 'Authentication', 'Customer Onboarding'],
+        link: '#projects',
+        icon: Fingerprint
+    },
+    {
+        id: 'ai-chatbot',
+        title: 'AI Chatbot & Conversational Platform',
+        subtitle: 'Chatbot Configuration & Deployment',
+        category: 'AI / CX AUTOMATION',
+        featured: false,
+        description: 'Prepared functional documentation covering workspace creation, agent configuration, training data, chatbot personality, appearance, plan selection, deployment, embedding, and usage management.',
+        capabilities: [
+            'Workspace creation and agent configuration requirements',
+            'Training data, personality, and appearance configuration',
+            'Plan selection, deployment, and embedding documentation',
+            'Usage management and ongoing platform support'
+        ],
+        technologies: ['Functional Docs', 'Training Data', 'Deployment', 'Embedding'],
+        concepts: ['Conversational AI', 'Chatbot Configuration', 'CX Automation'],
+        link: '#projects',
+        icon: Bot
+    },
+    {
+        id: 'vendor-evaluation',
+        title: 'Vendor Evaluation & Payment Assessments',
+        subtitle: 'EY & KPMG Vendor Exercises',
+        category: 'VENDOR ASSESSMENT',
+        featured: false,
+        description: 'Assisted banks in vendor analysis exercises involving EY and KPMG — vendor information gathering, documentation, and functional/technical assessment coordination — plus payment gateway and verification vendor evaluations.',
+        capabilities: [
+            'Vendor information gathering and documentation',
+            'Functional and technical assessment coordination',
+            'Support for payment gateway and KYC vendor evaluations',
+            'Evaluation coordination with bank stakeholders'
+        ],
+        technologies: ['Vendor Analysis', 'Payment Gateway', 'Assessment Coordination', 'Documentation'],
+        concepts: ['Vendor Management', 'Evaluation', 'Bank Engagements'],
+        link: '#projects',
+        icon: FileSearch
     },
     {
         id: 'casmex',
-        title: 'CASMEX',
-        subtitle: 'Remittance, Forex & Incoming Exchange Software',
-        category: 'ENTERPRISE FINANCIAL SOFTWARE',
+        title: 'CASMEX – Enterprise Financial Software',
+        subtitle: 'Remittance, Forex & Financial Accounting',
+        category: 'ENTERPRISE FINANCE',
         featured: false,
-        description: 'Enterprise software supporting remittance, foreign exchange management, incoming exchange operations, and financial transaction processing.',
+        description: 'Enterprise financial application supporting remittance, foreign exchange, multi-currency transactions, cash management, and financial accounting across the CASMEX product portfolio.',
         capabilities: [
-            'Worked on remittance & foreign exchange modules',
-            'Developed and maintained enterprise applications',
-            'Implemented database operations with Oracle',
-            'Enhanced application performance & debugging',
-            'Production issue resolution & maintenance'
+            'Remittance & forex: inward/outward remittances, Demand Drafts, EFT, multi-currency transactions',
+            'Cash & treasury: cash requests, transfers, cheque processing, bank funding operations',
+            'Financial accounting: General Ledger, journal vouchers, Balance Sheet, Profit & Loss',
+            'Period-end: bank reconciliation, month/year-end closing, currency revaluation, depreciation',
+            'Central bank and country-specific regulatory report generation'
         ],
-        technologies: ['ASP.NET WebForms', '.NET Framework 4', 'Oracle Database', 'ADO.NET'],
-        concepts: ['Enterprise application development', 'Financial transaction processing', 'Legacy application maintenance', 'Database-driven applications', 'Production debugging', 'Issue resolution'],
-        link: 'https://github.com/risalsalu',
-        icon: Globe
+        technologies: ['ASP.NET WebForms', '.NET Framework 4', 'Oracle Database', 'General Ledger'],
+        concepts: ['Cross-Border Payments', 'Treasury', 'Regulatory Reporting', 'Reconciliation'],
+        link: '#projects',
+        icon: Banknote
     },
     {
         id: 'ishield',
-        title: 'ISHIELD',
-        subtitle: 'Anti Money Laundering Application',
-        category: 'FINANCIAL COMPLIANCE / AML',
+        title: 'iShield – Anti-Money Laundering Application',
+        subtitle: 'AML Detection & Compliance',
+        category: 'FINANCIAL COMPLIANCE',
         featured: false,
-        description: 'An anti-money laundering application integrated with money transfer and remittance systems to support compliance workflows and transaction monitoring.',
+        description: 'AML application integrated with money transfer and remittance systems to support customer risk assessment, transaction monitoring, suspicious activity detection, and regulatory compliance.',
         capabilities: [
-            'Worked on AML and compliance workflows',
-            'Developed transaction monitoring functionalities',
-            'Contributed to secure transaction validation',
-            'Suspicious activity monitoring modules',
-            'Maintained and enhanced financial compliance apps'
+            'Alerts & case management with ISTR workflows and compliance officer routing',
+            'Customer risk profiling, risk-rating configuration, and forex name screening',
+            'Four-Eye Authorization and role-based access controls',
+            'FIU regulatory reporting, STR analytics, and AML audit logs'
         ],
-        technologies: ['ASP.NET', 'Enterprise Applications', 'Financial Compliance'],
-        concepts: ['Compliance workflows', 'Transaction monitoring', 'Secure transaction validation', 'Enterprise application maintenance', 'Financial software engineering'],
-        link: 'https://github.com/risalsalu',
-        icon: ShieldCheck
+        technologies: ['AML', 'Name Screening', 'STR / ISTR', 'Four-Eye Authorization'],
+        concepts: ['Risk Assessment', 'Compliance Escalation', 'Audit Trails'],
+        link: '#projects',
+        icon: ShieldAlert
+    },
+    {
+        id: 'wps',
+        title: 'WPS – Wage Protection System',
+        subtitle: 'UAE Payroll & Regulatory Disbursals',
+        category: 'PAYROLL / COMPLIANCE',
+        featured: false,
+        description: 'Specialized payroll and regulatory module automating salary processing and wage disbursement while supporting UAE government and Central Bank requirements.',
+        capabilities: [
+            'Centralized company and employee master data management',
+            'Automated salary calculations and disbursement file generation',
+            'Refund handling and rejected transaction management',
+            'Central Bank-compliant files, pension, and domestic worker salary processing'
+        ],
+        technologies: ['Salary Processing', 'Regulatory Files', 'WPS', 'Role-Based Authorization'],
+        concepts: ['Payroll Workflows', 'Data Validation', 'Exception Handling'],
+        link: '#projects',
+        icon: Wallet
     }
 ];
 
@@ -93,20 +230,17 @@ const ProjectCard = ({ project }) => {
     return (
         <a
             href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
             className={cn(
                 "group relative block overflow-hidden rounded-xl bg-zinc-900/50 border border-white/5 p-6 md:p-8 transition-all duration-300 outline-none",
                 "hover:border-neon-green/20 hover:bg-zinc-900/70 hover:shadow-[0_0_20px_rgba(204,255,0,0.02)]",
                 isFeatured ? "col-span-1 md:col-span-2 border-neon-green/10 bg-zinc-900/60 shadow-[0_0_15px_rgba(204,255,0,0.01)]" : ""
             )}
         >
-            {/* Top Row: Category & Icon / Link */}
             <div className="flex items-center justify-between mb-6">
                 <span className="text-[9px] font-mono tracking-widest text-gray-500 uppercase flex items-center gap-1.5">
                     {isFeatured && (
                         <span className="px-1.5 py-0.5 rounded bg-neon-green/10 text-neon-green text-[8px] font-mono mr-1">
-                            FLAGSHIP SYSTEM
+                            FLAGSHIP PROJECT
                         </span>
                     )}
                     {project.category}
@@ -119,7 +253,6 @@ const ProjectCard = ({ project }) => {
                 </div>
             </div>
 
-            {/* Title Block */}
             <div className="mb-6">
                 <h4 className="text-2xl md:text-3xl font-display font-bold text-white mb-1 group-hover:text-neon-green transition-colors duration-300">
                     {project.title}
@@ -129,17 +262,14 @@ const ProjectCard = ({ project }) => {
                 </p>
             </div>
 
-            {/* Description */}
             <p className="text-gray-400 text-sm leading-relaxed mb-6 font-light max-w-3xl">
                 {project.description}
             </p>
 
-            {/* Flagship layout split or standard stack layout */}
             <div className={cn("grid gap-6", isFeatured ? "lg:grid-cols-2" : "grid-cols-1")}>
-                {/* Left side: Capabilities */}
                 <div>
                     <h5 className="text-[10px] font-mono uppercase tracking-wider text-gray-500 mb-3">
-                        Key Capabilities & Areas
+                        Key Contributions
                     </h5>
                     <ul className="space-y-2 mb-2">
                         {project.capabilities.map((cap, i) => (
@@ -153,11 +283,10 @@ const ProjectCard = ({ project }) => {
                     </ul>
                 </div>
 
-                {/* Right side: Tech tags and engineering concepts */}
                 <div className="flex flex-col justify-between gap-6">
                     <div>
                         <h5 className="text-[10px] font-mono uppercase tracking-wider text-gray-500 mb-3">
-                            Technology Stack
+                            Tools &amp; Methods
                         </h5>
                         <div className="flex flex-wrap gap-1.5 mb-2">
                             {project.technologies.map((tech, i) => (
@@ -173,7 +302,7 @@ const ProjectCard = ({ project }) => {
 
                     <div>
                         <h5 className="text-[10px] font-mono uppercase tracking-wider text-gray-500 mb-3">
-                            Engineering Concepts
+                            Focus Areas
                         </h5>
                         <div className="flex flex-wrap gap-1.5">
                             {project.concepts.map((concept, i) => (
@@ -199,7 +328,6 @@ const Projects = () => {
             className="bg-dark-bg py-24 min-h-[50vh] flex flex-col justify-center"
         >
             <div className="w-full max-w-6xl mx-auto px-4 md:px-12">
-                {/* Header */}
                 <div className="mb-16 border-b border-white/5 pb-6">
                     <TextReveal>
                         <h3 className="text-3xl md:text-4xl font-display font-medium text-white selection:bg-neon-green selection:text-black">
@@ -208,7 +336,6 @@ const Projects = () => {
                     </TextReveal>
                 </div>
 
-                {/* Projects Grid Container */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {PROJECTS.map((project) => (
                         <ProjectCard key={project.id} project={project} />

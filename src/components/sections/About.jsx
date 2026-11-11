@@ -5,13 +5,11 @@ import TextReveal from '../ui/TextReveal';
 import Card from '../ui/Card';
 import SystemGraph from '../ui/SystemGraph';
 import { useCursorEngine } from '../../hooks/useCursorEngine';
-import { User, Server, Database, Code, Shield, Cpu } from 'lucide-react';
+import { FileText, Workflow, BarChart3, Users } from 'lucide-react';
 
 const MagneticTag = ({ children, className }) => {
     const { smoothedX, smoothedY } = useCursorEngine();
 
-    // Parallax effect: Shift opposite to cursor or towards? 
-    // Let's do a subtle "float" towards cursor
     const x = useTransform(smoothedX, value => (value - window.innerWidth / 2) * 0.01);
     const y = useTransform(smoothedY, value => (value - window.innerHeight / 2) * 0.01);
 
@@ -24,10 +22,10 @@ const MagneticTag = ({ children, className }) => {
 
 const About = () => {
     const stats = [
-        { icon: Server, label: 'Architecture', value: 'Microservices' },
-        { icon: Code, label: 'Backend', value: '.NET 8 / C#' },
-        { icon: Database, label: 'Data', value: 'SQL & NoSQL' },
-        { icon: Shield, label: 'Security', value: 'OAuth / JWT' },
+        { icon: FileText, label: 'Documentation', value: 'BRD / FSD' },
+        { icon: Workflow, label: 'Methodology', value: 'Agile Scrum' },
+        { icon: BarChart3, label: 'Analytics', value: 'BI & SQL' },
+        { icon: Users, label: 'Stakeholders', value: 'End-to-End' },
     ];
 
     return (
@@ -38,23 +36,23 @@ const About = () => {
                 <div className="relative z-10">
                     <TextReveal>
                         <h3 className="text-3xl md:text-4xl font-display font-bold mb-8 leading-tight">
-                            Building <span className="text-neon-green">Scalable Systems</span> <br />
-                            Not Just Websites.
+                            Bridging <span className="text-neon-green">Business Needs</span> <br />
+                            And Data-Driven Solutions.
                         </h3>
                     </TextReveal>
 
                     <TextReveal delay={0.2}>
                         <div className="space-y-6 text-gray-400 leading-relaxed font-light text-lg">
                             <p>
-                                I am a <strong>Backend-Focused Engineer</strong> transitioning from monolithic applications to <MagneticTag className="text-neon-green font-medium inline-block relative cursor-none">Distributed Microservices</MagneticTag>. My expertise lies in designing high-performance APIs with <strong>ASP.NET Core</strong> and ensuring system resilience.
+                                I am a <strong>Business Analyst</strong> focused on turning ambiguous stakeholder goals into <MagneticTag className="text-neon-green font-medium inline-block relative cursor-none">clear requirements</MagneticTag>, mapped processes, and measurable outcomes — from BRDs and FSDs to UAT sign-off.
                             </p>
 
                             <p>
-                                I prioritize <strong>System Design</strong> over temporary fixes. By strictly adhering to <MagneticTag className="text-neon-green font-medium inline-block relative cursor-none">Clean Architecture</MagneticTag> and Domain-Driven Design (DDD), I build software that remains maintainable as it scales.
+                                I combine rigorous <strong>requirements engineering</strong> with hands-on <MagneticTag className="text-neon-green font-medium inline-block relative cursor-none">data analytics</MagneticTag> — SQL, Python, and Power BI — so decisions are backed by evidence, not assumption.
                             </p>
 
                             <p className="text-sm border-l-2 border-neon-green/30 pl-4 italic">
-                                "The goal isn't just to write code that works, but to architect systems that endure."
+                                "The goal isn't just to document what was asked, but to solve the right problem — and prove it with data."
                             </p>
                         </div>
                     </TextReveal>

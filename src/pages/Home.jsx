@@ -4,7 +4,6 @@ import About from '../components/sections/About';
 import Skills from '../components/sections/Skills';
 import Experience from '../components/sections/Experience';
 import Projects from '../components/sections/Projects';
-import Architecture from '../components/sections/Architecture';
 import Contact from '../components/sections/Contact';
 
 
@@ -16,8 +15,6 @@ const Home = () => {
             <Skills />
             <Experience />
             <Projects />
-            <Architecture />
-
             <Contact />
         </>
     );

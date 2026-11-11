@@ -4,81 +4,98 @@ import Section from '../ui/Section';
 import TextReveal from '../ui/TextReveal';
 import { cn } from '../../utils/cn';
 import { skillCategories } from '../../config/skills';
-import { 
-    SiDotnet, SiRedis, SiDocker, SiGithubactions, SiPostgresql, 
-    SiMongodb, SiApachekafka, SiKubernetes, SiKeycloak, SiJavascript, 
-    SiTypescript, SiTailwindcss, SiRedux, SiPython, SiFastapi, 
-    SiGit, SiGithub, SiJsonwebtokens, SiClaude, SiGooglegemini, 
-    SiOpenai, SiOpenid, SiOllama, SiReactrouter, SiVite 
+import {
+    SiPython, SiPandas, SiNumpy, SiPlotly,
+    SiJupyter, SiScikitlearn, SiKaggle, SiPostgresql
 } from 'react-icons/si';
-import { TbBrandCSharp } from 'react-icons/tb';
+import { FaChartLine, FaChartArea, FaFileExcel } from 'react-icons/fa';
 import { DiMsqlServer } from 'react-icons/di';
-import { FaReact, FaAws, FaGoogle, FaCloud, FaMicrosoft, FaServer, FaGem } from 'react-icons/fa';
-import { Layers, Globe, ShieldCheck, Database, Radio, Workflow, Cpu, Container, Zap, Box, Server, Lock, Key, Network } from 'lucide-react';
+import {
+    FileText, FileCode, ListTodo, CheckCircle, Search, Calendar, Users,
+    Monitor, RefreshCw, Kanban, BarChart3, PieChart, Activity, TrendingUp,
+    Target, FlaskConical, GitBranch, Link, Sigma, LayoutDashboard, Eye, FileBarChart,
+    Database, Combine, Download, Boxes, Share2, GitMerge, Trees, Gauge,
+    ShieldCheck, UserPlus, MessageSquare, Contact, Plug, Cpu,
+    Workflow, Landmark, ArrowLeftRight, Coins, BookOpen, ShieldAlert,
+    Building2, FileWarning, ClipboardList, Video, ScanText, IdCard,
+    FileSpreadsheet, Bot, Rocket
+} from 'lucide-react';
 
-// --- ICON MAP ---
 const ICON_MAP = {
-    SiDotnet,
-    SiRedis,
-    SiDocker,
-    SiGithubactions,
-    SiPostgresql,
-    SiMongodb,
-    SiApachekafka,
-    SiKubernetes,
-    SiKeycloak,
-    SiJavascript,
-    SiTypescript,
-    SiTailwindcss,
-    SiRedux,
+    FaChartLine,
     SiPython,
-    SiFastapi,
-    SiGit,
-    SiGithub,
-    SiJsonwebtokens,
-    SiClaude,
-    SiGooglegemini,
-    SiOpenai,
-    SiOpenid,
-    SiOllama,
-    SiReactrouter,
-    SiVite,
-    TbBrandCSharp,
+    SiPandas,
+    SiNumpy,
+    SiPlotly,
+    FaChartArea,
+    SiJupyter,
+    SiScikitlearn,
+    SiKaggle,
+    FaFileExcel,
+    SiPostgresql,
     DiMsqlServer,
-    FaReact,
-    FaAws,
-    FaGoogle,
-    FaCloud,
-    FaMicrosoft,
-    FaServer,
-    FaGem,
-    Layers,
-    Globe,
-    ShieldCheck,
+    FileText,
+    FileCode,
+    ListTodo,
+    CheckCircle,
+    Search,
+    Calendar,
+    Users,
+    Monitor,
+    RefreshCw,
+    Kanban,
+    BarChart3,
+    PieChart,
+    Activity,
+    TrendingUp,
+    Target,
+    FlaskConical,
+    GitBranch,
+    Link,
+    Sigma,
+    LayoutDashboard,
+    Eye,
+    FileBarChart,
     Database,
-    Radio,
-    Workflow,
+    Combine,
+    Download,
+    Boxes,
+    Share2,
+    GitMerge,
+    Trees,
+    Gauge,
+    ShieldCheck,
+    UserPlus,
+    MessageSquare,
+    Contact,
+    Plug,
     Cpu,
-    Container,
-    Zap,
-    Box,
-    Server,
-    Lock,
-    Key,
-    Network
+    Workflow,
+    Landmark,
+    ArrowLeftRight,
+    Coins,
+    BookOpen,
+    ShieldAlert,
+    Building2,
+    FileWarning,
+    ClipboardList,
+    Video,
+    ScanText,
+    IdCard,
+    FileSpreadsheet,
+    Bot,
+    Rocket
 };
 
-// --- CONFIG ---
-const HOVER_RADIUS = 200; // Pixels
+const HOVER_RADIUS = 200;
 const BASE_SCALE = 1.0;
 const MAX_SCALE = 1.15;
-const MAX_SHIFT = 10; // Pixels
+const MAX_SHIFT = 10;
 
 const TechCard = ({ name, description, icon: Icon, color, category, activeCategory, setActiveCategory, mouseX, mouseY }) => {
     const ref = useRef(null);
     const [rect, setRect] = useState(null);
 
-    // Motion Springs for smooth physics
     const scale = useSpring(BASE_SCALE, { stiffness: 150, damping: 20 });
     const x = useSpring(0, { stiffness: 150, damping: 20 });
     const y = useSpring(0, { stiffness: 150, damping: 20 });
@@ -86,7 +103,6 @@ const TechCard = ({ name, description, icon: Icon, color, category, activeCatego
     const isSystemActive = activeCategory === category;
     const isOtherActive = activeCategory && !isSystemActive;
 
-    // Cache position
     useEffect(() => {
         const updateRect = () => {
             if (ref.current) {
@@ -106,15 +122,12 @@ const TechCard = ({ name, description, icon: Icon, color, category, activeCatego
         };
     }, []);
 
-    // Physics Loop
     useAnimationFrame(() => {
         if (!rect) return;
 
-        // Get current mouse position (Client Coords)
         const mx = mouseX.get();
         const my = mouseY.get();
 
-        // If mouse is off-screen (reset value), ease back
         if (mx === -1000) {
             scale.set(BASE_SCALE);
             x.set(0);
@@ -127,12 +140,8 @@ const TechCard = ({ name, description, icon: Icon, color, category, activeCatego
         const distance = Math.sqrt(dx * dx + dy * dy);
 
         if (distance < HOVER_RADIUS) {
-            // Calculate intensity (0 to 1)
             const intensity = 1 - Math.pow(distance / HOVER_RADIUS, 2);
-
             scale.set(BASE_SCALE + (MAX_SCALE - BASE_SCALE) * intensity);
-
-            // Magnetic pull
             x.set((dx / distance) * MAX_SHIFT * intensity);
             y.set((dy / distance) * MAX_SHIFT * intensity);
         } else {
@@ -154,18 +163,15 @@ const TechCard = ({ name, description, icon: Icon, color, category, activeCatego
                 isOtherActive ? "opacity-30 grayscale blur-[0.5px]" : "opacity-100"
             )}
         >
-            {/* Active Indicator */}
             <div
                 className={cn("absolute bottom-0 left-0 h-[2px] transition-all duration-300", isSystemActive ? "w-full opacity-100" : "w-0 opacity-0")}
                 style={{ backgroundColor: color }}
             />
 
-            {/* Icon */}
             <div className="relative z-10 mb-1 flex items-center justify-center">
                 <Icon className="text-2xl md:text-3xl transition-colors duration-300" style={{ color: isSystemActive || isOtherActive === false ? (isSystemActive ? color : '#e5e7eb') : '#525252' }} />
             </div>
 
-            {/* Name */}
             <h3 className={cn(
                 "relative z-10 text-[9px] uppercase tracking-wider font-semibold transition-colors duration-300 text-center leading-tight mb-0.5",
                 isSystemActive ? "text-white" : "text-gray-400 group-hover:text-gray-200"
@@ -173,7 +179,6 @@ const TechCard = ({ name, description, icon: Icon, color, category, activeCatego
                 {name}
             </h3>
 
-            {/* Short Description */}
             <span className={cn(
                 "relative z-10 text-[6.5px] font-mono tracking-wider font-medium text-center leading-none transition-colors duration-300",
                 isSystemActive ? "text-gray-400" : "text-gray-600 group-hover:text-gray-500"
@@ -198,7 +203,6 @@ const CategoryGroup = ({ title, category, skills, color, activeCategory, setActi
                 {title}
             </h4>
 
-            {/* Core Tech Cards Grid */}
             {coreSkills.length > 0 && (
                 <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
                     {coreSkills.map((skill, idx) => {
@@ -221,7 +225,6 @@ const CategoryGroup = ({ title, category, skills, color, activeCategory, setActi
                 </div>
             )}
 
-            {/* Secondary Skills Compact Badges */}
             {secondarySkills.length > 0 && (
                 <div className={cn(
                     "flex flex-wrap gap-1.5 mt-3 pt-2 border-t border-white/5",
@@ -249,15 +252,12 @@ const Skills = () => {
     const containerRef = useRef(null);
     const rectRef = useRef(null);
 
-    // Global Cursor State
     const mouseX = useMotionValue(-1000);
     const mouseY = useMotionValue(-1000);
 
-    // Background Radial Gradient Springs
     const bgX = useSpring(mouseX, { stiffness: 50, damping: 20 });
     const bgY = useSpring(mouseY, { stiffness: 50, damping: 20 });
 
-    // Cache the bounding rectangle measurements to avoid layout thrashing on spring updates
     const updateRect = () => {
         if (containerRef.current) {
             rectRef.current = containerRef.current.getBoundingClientRect();
@@ -282,7 +282,6 @@ const Skills = () => {
         rectRef.current = null;
     };
 
-    // Calculate background radial gradient coordinates from cached rect
     const bgGradient = useTransform([bgX, bgY], ([x, y]) => {
         const rect = rectRef.current;
         if (!rect || x === -1000) return 'none';
@@ -291,8 +290,7 @@ const Skills = () => {
         return `radial-gradient(600px circle at ${localX}px ${localY}px, rgba(20, 255, 100, 0.04), transparent 40%)`;
     });
 
-    // Partition categories for the two independent columns on desktop
-    const col1Ids = ["backend", "database", "messaging", "ai-providers", "architecture"];
+    const col1Ids = ["business-analysis", "project-management", "banking-finance", "compliance", "digital-banking"];
     const leftCategories = skillCategories.filter(c => col1Ids.includes(c.id));
     const rightCategories = skillCategories.filter(c => !col1Ids.includes(c.id));
 
@@ -305,10 +303,8 @@ const Skills = () => {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
-            {/* Base Background Grid */}
             <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:40px_40px] opacity-20 pointer-events-none"></div>
 
-            {/* Reactive "Energy Field" Background Layer */}
             <motion.div
                 className="absolute inset-0 pointer-events-none transition-opacity duration-300"
                 style={{ background: bgGradient }}
@@ -319,13 +315,12 @@ const Skills = () => {
                     <div className="mb-12 border-b border-white/5 pb-6 flex items-end justify-between">
                         <div>
                             <h3 className="text-3xl md:text-4xl font-display font-bold text-white leading-none">
-                                Technical <span className="text-gray-500">Stack</span>
+                                Skills &amp; <span className="text-gray-500">Expertise</span>
                             </h3>
                         </div>
                     </div>
                 </TextReveal>
 
-                {/* Desktop Independent 2-Column Layout (>= md) */}
                 <div className="hidden md:grid grid-cols-2 gap-x-12 items-start">
                     <div className="flex flex-col gap-y-12">
                         {leftCategories.map((category) => (
@@ -359,7 +354,6 @@ const Skills = () => {
                     </div>
                 </div>
 
-                {/* Mobile Single Column Flow (< md) */}
                 <div className="flex flex-col gap-y-12 md:hidden">
                     {skillCategories.map((category) => (
                         <CategoryGroup

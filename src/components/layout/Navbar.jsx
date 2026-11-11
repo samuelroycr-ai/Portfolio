@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, Github, Linkedin, Mail } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { cn } from '../../utils/cn';
-import { useScroll } from '../../hooks/useScroll';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -33,7 +32,7 @@ const Navbar = () => {
         >
             <div className="container mx-auto px-6 flex items-center justify-between">
                 <Link to="/" className="text-2xl font-display font-bold text-white tracking-widest hover:text-neon-green transition-colors">
-                    RIZAL<span className="text-neon-green">.</span>DEV
+                    SAMUEL<span className="text-neon-green">.</span>ROY
                 </Link>
 
                 {/* Desktop Menu */}
@@ -49,13 +48,10 @@ const Navbar = () => {
                         </a>
                     ))}
                     <a
-                        href="/Muhammed_Rizal_NP.pdf"
-                        download="Muhammed_Rizal_NP.pdf"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        href="#contact"
                         className="px-5 py-2 text-sm font-bold text-black bg-neon-green rounded hover:bg-white hover:shadow-[0_0_15px_rgba(204,255,0,0.5)] transition-all transform hover:-translate-y-0.5"
                     >
-                        Resume
+                        Hire Me
                     </a>
                 </div>
 
@@ -86,14 +82,11 @@ const Navbar = () => {
                     </a>
                 ))}
                 <a
-                    href="/Muhammed_Rizal_NP.pdf"
-                    download="Muhammed_Rizal_NP.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="#contact"
                     onClick={() => setIsOpen(false)}
                     className="px-8 py-3 text-lg font-bold text-black bg-neon-green rounded hover:bg-white transition-all shadow-[0_0_20px_rgba(204,255,0,0.3)]"
                 >
-                    Download Resume
+                    Hire Me
                 </a>
             </div>
         </nav>

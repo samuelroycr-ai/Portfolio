@@ -2,13 +2,14 @@ import React from 'react';
 import Section from '../ui/Section';
 import TextReveal from '../ui/TextReveal';
 import { cn } from '../../utils/cn';
-import { Mail, Github, Linkedin, FileText, ArrowUpRight } from 'lucide-react';
+import { Mail, Linkedin, Github, FileText, ArrowUpRight } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
 
 const ContactItem = ({ icon: Icon, label, value, href, isPrimary = false }) => (
     <a
         href={href}
-        target="_blank"
-        rel="noopener noreferrer"
+        target={href.startsWith('http') ? '_blank' : undefined}
+        rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
         className={cn(
             "group flex items-center justify-between p-6 md:p-8 w-full border-b border-white/5 transition-all duration-300",
             "hover:bg-neon-green/5 hover:pl-10",
@@ -45,30 +46,26 @@ const Contact = () => {
     return (
         <Section id="contact" className="bg-dark-bg py-32 flex flex-col justify-center min-h-[50vh]">
             <div className="container mx-auto px-4 max-w-4xl">
-                {/* Header */}
                 <div className="mb-20">
                     <TextReveal>
-                        {/* No section number, consistent with user's cleanup */}
                         <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-6 leading-tight">
-                            Let's Build <br />
-                            <span className="text-neon-green">Scalable Systems</span>.
+                            Let's Solve <br />
+                            <span className="text-neon-green">The Right Problem</span>.
                         </h2>
                         <p className="text-gray-500 text-lg md:text-xl font-mono max-w-2xl leading-relaxed">
-                            Open for senior engineering roles and technical consulting.
+                            Open for Business Analyst, Data Analyst, and product roles.
                             <br />
                             Direct channels only. No forms.
                         </p>
                     </TextReveal>
                 </div>
 
-                {/* Contact Interface */}
                 <div className="flex flex-col border-t border-b border-white/5">
-
                     <ContactItem
                         icon={Mail}
-                        label="Email Protocol"
-                        value="mdrizalnp@gmail.com"
-                        href="mailto:mdrizalnp@gmail.com"
+                        label="Email"
+                        value="samuelroy.cr@gmail.com"
+                        href="mailto:samuelroy.cr@gmail.com"
                         isPrimary={true}
                     />
 
@@ -76,28 +73,29 @@ const Contact = () => {
                         icon={Linkedin}
                         label="Professional Network"
                         value="LinkedIn"
-                        href="https://www.linkedin.com/in/muhammed-rizal/"
+                        href="https://www.linkedin.com/in/samuelroyp/"
                     />
 
                     <ContactItem
                         icon={Github}
                         label="Code Repository"
-                        value="Github"
-                        href="https://github.com/risalsalu"
+                        value="GitHub"
+                        href="https://github.com/samuelroycr-ai"
+                    />
+
+                    <ContactItem
+                        icon={FaWhatsapp}
+                        label="Direct Message"
+                        value="WhatsApp"
+                        href="https://api.whatsapp.com/send/?phone=918301968137&text&type=phone_number&app_absent=0"
                     />
 
                     <ContactItem
                         icon={FileText}
-                        label="Technical Profile"
-                        value="Download Resume (PDF)"
-                        href="/Muhammed_Rizal_NP.pdf"
+                        label="Professional Profile"
+                        value="Add Resume Link"
+                        href="#contact"
                     />
-
-                </div>
-
-                {/* Footer Signature */}
-                <div className="mt-20 flex justify-between items-end text-xs font-mono text-gray-700">
-
                 </div>
             </div>
         </Section>
