@@ -23,11 +23,11 @@ const SystemGraph = ({ className }) => {
 
     // Nodes Definition
     const nodes = [
-        { id: 'gateway', label: 'API Gateway', icon: Globe, x: '50%', y: '20%', color: 'text-neon-green' },
-        { id: 'auth', label: 'Auth Service', icon: Shield, x: '20%', y: '40%', color: 'text-neon-green' },
+        { id: 'gateway', label: 'API Gateway', icon: Globe, x: '50%', y: '18%', color: 'text-neon-green' },
+        { id: 'auth', label: 'Auth Service', icon: Shield, x: '24%', y: '40%', color: 'text-neon-green' },
         { id: 'core', label: 'Core API', icon: Cpu, x: '50%', y: '50%', color: 'text-white' },
-        { id: 'cache', label: 'Redis Cache', icon: Layers, x: '80%', y: '40%', color: 'text-gray-400' },
-        { id: 'db', label: 'Database', icon: Database, x: '50%', y: '80%', color: 'text-neon-green' },
+        { id: 'cache', label: 'Redis Cache', icon: Layers, x: '76%', y: '40%', color: 'text-gray-400' },
+        { id: 'db', label: 'Database', icon: Database, x: '50%', y: '78%', color: 'text-neon-green' },
     ];
 
     // Connections (From -> To)
@@ -103,8 +103,8 @@ const SystemGraph = ({ className }) => {
                 <motion.div
                     className="absolute w-1.5 h-1.5 bg-neon-green rounded-full shadow-[0_0_5px_var(--color-neon-green)] z-20"
                     animate={{
-                        left: ['50%', '50%', '50%', '80%'], // Gateway -> Core -> Cache
-                        top: ['20%', '50%', '50%', '40%'],
+                        left: ['50%', '50%', '50%', '76%'], // Gateway -> Core -> Cache
+                        top: ['18%', '50%', '50%', '40%'],
                         opacity: [0, 1, 1, 0]
                     }}
                     transition={{ duration: 3, repeat: Infinity, ease: "linear", delay: 1 }}
@@ -112,8 +112,8 @@ const SystemGraph = ({ className }) => {
                 <motion.div
                     className="absolute w-1.5 h-1.5 bg-neon-green rounded-full shadow-[0_0_5px_var(--color-neon-green)] z-20"
                     animate={{
-                        left: ['50%', '20%', '50%'], // Gateway -> Auth -> DB
-                        top: ['20%', '40%', '80%'],
+                        left: ['50%', '24%', '50%'], // Gateway -> Auth -> DB
+                        top: ['18%', '40%', '78%'],
                         opacity: [0, 1, 0]
                     }}
                     transition={{ duration: 4, repeat: Infinity, ease: "linear", delay: 2.5 }}

@@ -11,24 +11,25 @@ const ContactItem = ({ icon: Icon, label, value, href, isPrimary = false }) => (
         target={href.startsWith('http') ? '_blank' : undefined}
         rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
         className={cn(
-            "group flex items-center justify-between p-6 md:p-8 w-full border-b border-white/5 transition-all duration-300",
-            "hover:bg-neon-green/5 hover:pl-10",
+            "group flex items-center justify-between gap-3 p-4 sm:p-6 md:p-8 w-full border-b border-white/5 transition-all duration-300",
+            "hover:bg-neon-green/5 sm:hover:pl-10",
             isPrimary ? "border-t border-white/5" : ""
         )}
     >
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-3 sm:gap-6 min-w-0 flex-1">
             <div className={cn(
-                "p-3 rounded-md transition-colors duration-300",
+                "p-2 sm:p-3 rounded-md transition-colors duration-300 shrink-0",
                 "text-gray-500 group-hover:text-neon-green bg-white/5 group-hover:bg-neon-green/10"
             )}>
-                <Icon size={24} />
+                <Icon size={20} className="sm:hidden" />
+                <Icon size={24} className="hidden sm:block" />
             </div>
-            <div className="flex flex-col">
-                <span className="text-xs font-mono text-gray-600 uppercase tracking-widest mb-1 group-hover:text-neon-green/80 transition-colors">
+            <div className="flex flex-col min-w-0">
+                <span className="text-[10px] sm:text-xs font-mono text-gray-600 uppercase tracking-widest mb-1 group-hover:text-neon-green/80 transition-colors truncate">
                     {label}
                 </span>
                 <span className={cn(
-                    "text-xl md:text-3xl font-display font-bold transition-colors duration-300",
+                    "text-sm sm:text-xl md:text-3xl font-display font-bold transition-colors duration-300 break-all sm:break-words",
                     "text-gray-400 group-hover:text-white"
                 )}>
                     {value}
@@ -36,8 +37,9 @@ const ContactItem = ({ icon: Icon, label, value, href, isPrimary = false }) => (
             </div>
         </div>
 
-        <div className="text-gray-700 group-hover:text-neon-green transition-transform duration-300 transform group-hover:-translate-y-1 group-hover:translate-x-1">
-            <ArrowUpRight size={24} />
+        <div className="text-gray-700 group-hover:text-neon-green transition-transform duration-300 transform group-hover:-translate-y-1 group-hover:translate-x-1 shrink-0">
+            <ArrowUpRight size={20} className="sm:hidden" />
+            <ArrowUpRight size={24} className="hidden sm:block" />
         </div>
     </a>
 );

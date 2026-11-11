@@ -5,7 +5,7 @@ const Section = ({ children, id, className, fullWidth = false, ...props }) => {
     return (
         <section
             id={id}
-            className={cn('py-20 md:py-32 relative', className)}
+            className={cn('py-20 md:py-32 relative scroll-mt-20 md:scroll-mt-24', className)}
             {...props}
         >
             {fullWidth ? (
