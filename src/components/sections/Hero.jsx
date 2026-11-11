@@ -137,7 +137,7 @@ const Hero = () => {
                     {/* Profile Image */}
                     <div className="md:w-auto flex justify-center fade-in-up pl-0 md:pl-10">
                         <OrbitalWrapper
-                            className="relative group w-[220px] h-[220px] md:w-[320px] md:h-[320px] cursor-default focus:outline-none"
+                            className="relative group w-[240px] h-[320px] md:w-[300px] md:h-[400px] cursor-default focus:outline-none"
                             tabIndex={0}
                             aria-label="Profile Image Interaction"
                         >
@@ -149,7 +149,7 @@ const Hero = () => {
                                     src="/profile.jpg"
                                     alt="Samuel Roy - Business Analyst"
                                     loading="lazy"
-                                    className="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 group-focus:grayscale-0 transition-all duration-700 ease-out"
+                                    className="w-full h-full object-cover object-center grayscale group-hover:grayscale-0 group-focus:grayscale-0 transition-all duration-700 ease-out"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                             </div>
