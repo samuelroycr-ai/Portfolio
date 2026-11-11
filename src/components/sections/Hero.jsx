@@ -51,7 +51,7 @@ const Hero = () => {
                 </Canvas>
             </div>
 
-            <div className="container mx-auto px-6 relative z-10 pt-24 md:pt-0">
+            <div className="container mx-auto px-6 relative z-10 pt-6 md:pt-0">
                 <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-10 md:gap-16">
 
                     {/* Text Content */}
