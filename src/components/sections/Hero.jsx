@@ -5,7 +5,7 @@ import * as random from 'maath/random/dist/maath-random.esm';
 import Section from '../ui/Section';
 import Button from '../ui/Button';
 import TextReveal from '../ui/TextReveal';
-import { Github, Linkedin, ArrowRight, Mail } from 'lucide-react';
+import { Linkedin, ArrowRight, Mail } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 import OrbitalWrapper from '../ui/OrbitalWrapper';
 
@@ -109,9 +109,6 @@ const Hero = () => {
                                 <div className="flex items-center gap-6 mt-4 md:mt-0">
                                     <a href="https://api.whatsapp.com/send/?phone=918301968137&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-neon-green transition-colors" aria-label="WhatsApp">
                                         <FaWhatsapp size={24} />
-                                    </a>
-                                    <a href="https://github.com/samuelroycr-ai" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-neon-green transition-colors" aria-label="GitHub">
-                                        <Github size={24} />
                                     </a>
                                     <a href="https://www.linkedin.com/in/samuelroyp/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-neon-green transition-colors" aria-label="LinkedIn">
                                         <Linkedin size={24} />

@@ -2,7 +2,7 @@ import React from 'react';
 import Section from '../ui/Section';
 import TextReveal from '../ui/TextReveal';
 import { cn } from '../../utils/cn';
-import { Mail, Linkedin, Github, FileText, ArrowUpRight } from 'lucide-react';
+import { Mail, Linkedin, FileText, ArrowUpRight } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 
 const ContactItem = ({ icon: Icon, label, value, href, isPrimary = false }) => (
@@ -74,13 +74,6 @@ const Contact = () => {
                         label="Professional Network"
                         value="LinkedIn"
                         href="https://www.linkedin.com/in/samuelroyp/"
-                    />
-
-                    <ContactItem
-                        icon={Github}
-                        label="Code Repository"
-                        value="GitHub"
-                        href="https://github.com/samuelroycr-ai"
                     />
 
                     <ContactItem

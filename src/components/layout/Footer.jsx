@@ -1,11 +1,10 @@
 import React from 'react';
-import { Github, Linkedin, Mail, Sparkles } from 'lucide-react';
+import { Linkedin, Mail, Sparkles } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 
 export default function Footer() {
     const socialLinks = [
         { icon: <FaWhatsapp className="w-5 h-5" />, url: "https://api.whatsapp.com/send/?phone=918301968137&text&type=phone_number&app_absent=0", label: "WhatsApp" },
-        { icon: <Github className="w-5 h-5" />, url: "https://github.com/samuelroycr-ai", label: "GitHub" },
         { icon: <Linkedin className="w-5 h-5" />, url: "https://www.linkedin.com/in/samuelroyp/", label: "LinkedIn" },
         { icon: <Mail className="w-5 h-5" />, url: "mailto:samuelroy.cr@gmail.com", label: "Email" }
     ];
