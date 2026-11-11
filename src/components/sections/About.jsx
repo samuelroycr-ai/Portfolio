@@ -58,15 +58,15 @@ const About = () => {
                     </TextReveal>
 
                     {/* Stats Grid */}
-                    <div className="grid grid-cols-2 gap-4 mt-10">
+                    <div className="grid grid-cols-2 gap-3 sm:gap-4 mt-10">
                         {stats.map((stat, index) => (
-                            <Card key={index} className="p-4 flex items-center gap-4 hover:border-neon-green/40 transition-colors group">
-                                <div className="p-2 rounded-lg bg-white/5 group-hover:bg-neon-green/10 transition-colors">
+                            <Card key={index} className="p-3 sm:p-4 flex items-center gap-2.5 sm:gap-4 hover:border-neon-green/40 transition-colors group min-w-0">
+                                <div className="p-2 rounded-lg bg-white/5 group-hover:bg-neon-green/10 transition-colors shrink-0">
                                     <stat.icon className="text-neon-green" size={20} />
                                 </div>
-                                <div className="flex flex-col">
-                                    <span className="font-display font-bold text-white text-lg">{stat.value}</span>
-                                    <span className="text-xs text-gray-500 uppercase tracking-wider">{stat.label}</span>
+                                <div className="flex flex-col min-w-0">
+                                    <span className="font-display font-bold text-white text-sm sm:text-lg leading-snug break-words">{stat.value}</span>
+                                    <span className="text-[9px] sm:text-xs text-gray-500 uppercase tracking-wider whitespace-nowrap">{stat.label}</span>
                                 </div>
                             </Card>
                         ))}
