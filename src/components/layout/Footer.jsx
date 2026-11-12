@@ -61,7 +61,7 @@ export default function Footer() {
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-neon-green opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-neon-green"></span>
                             </span>
-                            Available for Opportunities
+                            Ready for My Next Challenge
                         </div>
                         <h4 className="text-xl font-bold text-white">Based in India</h4>
                         <p className="text-gray-500 text-sm">Open to remote and global roles.</p>

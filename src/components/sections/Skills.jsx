@@ -290,7 +290,7 @@ const Skills = () => {
         return `radial-gradient(600px circle at ${localX}px ${localY}px, rgba(20, 255, 100, 0.04), transparent 40%)`;
     });
 
-    const col1Ids = ["business-analysis", "project-management", "banking-finance", "compliance", "digital-banking"];
+    const col1Ids = ["business-analysis", "project-management", "banking-finance", "compliance"];
     const leftCategories = skillCategories.filter(c => col1Ids.includes(c.id));
     const rightCategories = skillCategories.filter(c => !col1Ids.includes(c.id));
 
