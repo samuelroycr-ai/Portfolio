@@ -1,4 +1,4 @@
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
 import * as random from 'maath/random/dist/maath-random.esm';
@@ -8,6 +8,11 @@ import TextReveal from '../ui/TextReveal';
 import { Linkedin, ArrowRight, Mail, Download } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 import OrbitalWrapper from '../ui/OrbitalWrapper';
+import { cn } from '../../utils/cn';
+
+const IS_MOBILE =
+    typeof window !== 'undefined' &&
+    (window.matchMedia('(pointer: coarse)').matches || window.matchMedia('(max-width: 768px)').matches);
 
 const ParticleField = (props) => {
     const ref = useRef();
@@ -35,6 +40,35 @@ const ParticleField = (props) => {
 };
 
 const Hero = () => {
+    const [photoActive, setPhotoActive] = useState(false);
+    const photoRef = useRef(null);
+
+    useEffect(() => {
+        if (!IS_MOBILE) return undefined;
+        let rafId = null;
+        const update = () => {
+            rafId = null;
+            const el = photoRef.current;
+            if (!el) return;
+            const vh = window.innerHeight;
+            const r = el.getBoundingClientRect();
+            const inBand = r.bottom > vh * 0.25 && r.top < vh * 0.75;
+            setPhotoActive((prev) => (prev === inBand ? prev : inBand));
+        };
+        const onScroll = () => {
+            if (rafId !== null) return;
+            rafId = requestAnimationFrame(update);
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll);
+        update();
+        return () => {
+            window.removeEventListener('scroll', onScroll);
+            window.removeEventListener('resize', onScroll);
+            if (rafId !== null) cancelAnimationFrame(rafId);
+        };
+    }, []);
+
     const handleNav = (id) => {
         const element = document.getElementById(id);
         if (element) {
@@ -146,27 +180,57 @@ const Hero = () => {
                     </div>
 
                     {/* Profile Image */}
-                    <div className="md:w-auto flex justify-center fade-in-up pl-0 md:pl-10">
+                    <div ref={photoRef} className="md:w-auto flex justify-center fade-in-up pl-0 md:pl-10">
                         <OrbitalWrapper
                             className="relative group w-[240px] h-[320px] md:w-[300px] md:h-[400px] cursor-default focus:outline-none"
                             tabIndex={0}
                             aria-label="Profile Image Interaction"
                         >
-                            <div className="absolute inset-0 bg-gradient-to-br from-neon-green/20 via-neon-green/10 to-neon-green/20 rounded-[2rem] blur-2xl opacity-40 group-hover:opacity-70 group-hover:blur-3xl group-focus:opacity-70 group-focus:blur-3xl transition-all duration-700 ease-out"></div>
-                            <div className="absolute -inset-0.5 bg-gradient-to-tr from-neon-green to-transparent rounded-[2rem] blur-lg opacity-0 group-hover:opacity-40 group-focus:opacity-40 transition-all duration-500"></div>
+                            <div className={cn(
+                                "absolute inset-0 bg-gradient-to-br from-neon-green/20 via-neon-green/10 to-neon-green/20 rounded-[2rem] transition-all duration-700 ease-out",
+                                photoActive ? "blur-3xl opacity-70" : "blur-2xl opacity-40",
+                                "group-hover:opacity-70 group-hover:blur-3xl group-focus:opacity-70 group-focus:blur-3xl"
+                            )}></div>
+                            <div className={cn(
+                                "absolute -inset-0.5 bg-gradient-to-tr from-neon-green to-transparent rounded-[2rem] blur-lg transition-all duration-500",
+                                photoActive ? "opacity-40" : "opacity-0",
+                                "group-hover:opacity-40 group-focus:opacity-40"
+                            )}></div>
 
-                            <div className="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 group-hover:border-neon-green/50 group-focus:border-neon-green/50 transition-all duration-500 ease-out group-hover:scale-[1.03] group-hover:-translate-y-2 group-focus:scale-[1.03] group-focus:-translate-y-2 shadow-2xl group-hover:shadow-[0_20px_40px_-15px_rgba(74,222,128,0.3)] bg-dark-bg z-10">
+                            <div className={cn(
+                                "relative w-full h-full rounded-2xl overflow-hidden border transition-all duration-500 ease-out bg-dark-bg z-10",
+                                photoActive
+                                    ? "border-neon-green/50 scale-[1.03] -translate-y-2 shadow-[0_20px_40px_-15px_rgba(74,222,128,0.3)]"
+                                    : "border-white/10 shadow-2xl",
+                                "group-hover:border-neon-green/50 group-focus:border-neon-green/50 group-hover:scale-[1.03] group-hover:-translate-y-2 group-focus:scale-[1.03] group-focus:-translate-y-2 group-hover:shadow-[0_20px_40px_-15px_rgba(74,222,128,0.3)] group-focus:shadow-[0_20px_40px_-15px_rgba(74,222,128,0.3)]"
+                            )}>
                                 <img
                                     src="/profile.jpg"
                                     alt="Samuel Roy - Business Analyst"
                                     loading="lazy"
-                                    className="w-full h-full object-cover object-center grayscale group-hover:grayscale-0 group-focus:grayscale-0 transition-all duration-700 ease-out"
+                                    className={cn(
+                                        "w-full h-full object-cover object-center transition-all duration-700 ease-out",
+                                        photoActive ? "grayscale-0" : "grayscale",
+                                        "group-hover:grayscale-0 group-focus:grayscale-0"
+                                    )}
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                <div className={cn(
+                                    "absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent transition-opacity duration-500",
+                                    photoActive ? "opacity-100" : "opacity-0",
+                                    "group-hover:opacity-100"
+                                )}></div>
                             </div>
 
-                            <div className="absolute -top-4 -right-4 md:-top-6 md:-right-6 z-20 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12 group-focus:scale-110 group-focus:rotate-12">
-                                <div className="flex items-center justify-center w-10 h-10 md:w-14 md:h-14 bg-dark-bg border border-neon-green/30 rounded-xl shadow-lg shadow-neon-green/10 group-hover:border-neon-green group-hover:shadow-neon-green/30 transition-all duration-300">
+                            <div className={cn(
+                                "absolute -top-4 -right-4 md:-top-6 md:-right-6 z-20 transition-transform duration-500",
+                                photoActive && "scale-110 rotate-12",
+                                "group-hover:scale-110 group-hover:rotate-12 group-focus:scale-110 group-focus:rotate-12"
+                            )}>
+                                <div className={cn(
+                                    "flex items-center justify-center w-10 h-10 md:w-14 md:h-14 bg-dark-bg border rounded-xl shadow-lg transition-all duration-300",
+                                    photoActive ? "border-neon-green shadow-neon-green/30" : "border-neon-green/30 shadow-neon-green/10",
+                                    "group-hover:border-neon-green group-hover:shadow-neon-green/30 group-focus:border-neon-green group-focus:shadow-neon-green/30"
+                                )}>
                                     <span className="text-neon-green text-xs md:text-sm font-mono font-bold">BA</span>
                                 </div>
                             </div>
