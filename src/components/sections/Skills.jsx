@@ -257,10 +257,13 @@ const Skills = () => {
     const bgX = useSpring(mouseX, { stiffness: 50, damping: 20 });
     const bgY = useSpring(mouseY, { stiffness: 50, damping: 20 });
 
-    const isCoarsePointer = useMemo(
-        () => typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches,
-        []
-    );
+    const isCoarsePointer = useMemo(() => {
+        if (typeof window === 'undefined') return false;
+        return (
+            window.matchMedia('(pointer: coarse)').matches ||
+            window.matchMedia('(max-width: 768px)').matches
+        );
+    }, []);
 
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -268,6 +271,7 @@ const Skills = () => {
     });
 
     const handleMouseMove = (e) => {
+        if (isCoarsePointer) return;
         mouseX.set(e.clientX);
         mouseY.set(e.clientY);
     };
@@ -284,19 +288,21 @@ const Skills = () => {
 
         let localX;
         let localY;
+        let alpha;
 
-        if (x !== -1000) {
-            localX = x - rect.left;
-            localY = y - rect.top;
-        } else if (isCoarsePointer) {
+        if (isCoarsePointer) {
             localX = rect.width / 2;
             localY = rect.height * progress;
+            alpha = 0.15;
+        } else if (x !== -1000) {
+            localX = x - rect.left;
+            localY = y - rect.top;
+            alpha = 0.04;
         } else {
             return 'none';
         }
 
-        const alpha = isCoarsePointer ? 0.07 : 0.04;
-        return `radial-gradient(600px circle at ${localX}px ${localY}px, rgba(20, 255, 100, ${alpha}), transparent 40%)`;
+        return `radial-gradient(750px circle at ${localX}px ${localY}px, rgba(20, 255, 100, ${alpha}), transparent 50%)`;
     });
 
     const col1Ids = ["business-analysis", "project-management", "banking-finance", "compliance"];
