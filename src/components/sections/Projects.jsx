@@ -6,60 +6,6 @@ import { ArrowUpRight, GraduationCap, BarChart3, Presentation, Landmark, Video, 
 
 const PROJECTS = [
     {
-        id: 'ai-education',
-        title: 'AI-Powered Education Solutions',
-        subtitle: 'AI-Based Educational Products',
-        category: 'EDUCATION TECHNOLOGY',
-        featured: false,
-        description: 'Demonstrated AI-based educational products to schools, explained digital learning applications, and supported school management and teachers in understanding technology-enabled teaching methods.',
-        capabilities: [
-            'Product demonstrations of AI-based educational products for school management',
-            'Explained digital learning applications and technology-enabled teaching methods',
-            'Guided teachers and principals through AI integration in modern classrooms',
-            'Presented solutions aligned with each school’s business requirements'
-        ],
-        technologies: ['Product Demos', 'Digital Learning', 'AI Integration', 'Presentations'],
-        concepts: ['EdTech', 'Classroom Transformation', 'Teacher Enablement'],
-        link: '#projects',
-        icon: GraduationCap
-    },
-    {
-        id: 'student-analytics',
-        title: 'Student Performance Analytics',
-        subtitle: 'Academic Data & Insights',
-        category: 'EDUCATION TECHNOLOGY',
-        featured: false,
-        description: 'Introduced academic data analytics through student assessment reports, performance monitoring, learning-gap identification, and data-driven insights to support academic improvement.',
-        capabilities: [
-            'Student assessment reports and performance monitoring',
-            'Learning-gap identification from academic data',
-            'Data-driven insights for academic decision-making',
-            'Progress reporting for school management'
-        ],
-        technologies: ['Assessment Reports', 'Performance Monitoring', 'Analytics', 'MIS Reporting'],
-        concepts: ['Student Analytics', 'Data-Driven Decisions', 'Academic Improvement'],
-        link: '#projects',
-        icon: BarChart3
-    },
-    {
-        id: 'school-implementation',
-        title: 'School Implementation & Teacher Training',
-        subtitle: 'On-Site Rollout & Adoption',
-        category: 'EDUCATION TECHNOLOGY',
-        featured: false,
-        description: 'Coordinated on-site implementation activities with school management and teachers, communicated feedback to development teams, and conducted practical product training to support adoption.',
-        capabilities: [
-            'On-site implementation coordination with school management',
-            'Requirement and feedback communication to development teams',
-            'Practical face-to-face product training for teachers',
-            'Adoption support throughout the rollout'
-        ],
-        technologies: ['Implementation Coordination', 'User Training', 'Feedback Loops'],
-        concepts: ['Change Enablement', 'Product Adoption', 'Stakeholder Training'],
-        link: '#projects',
-        icon: Presentation
-    },
-    {
         id: 'sib-core-banking',
         title: 'South Indian Bank – Core Banking & Onboarding',
         subtitle: 'Core Banking & ETB/NTB Workflows',
@@ -220,6 +166,60 @@ const PROJECTS = [
         concepts: ['Payroll Workflows', 'Data Validation', 'Exception Handling'],
         link: '#projects',
         icon: Wallet
+    },
+    {
+        id: 'ai-education',
+        title: 'AI-Powered Education Solutions',
+        subtitle: 'AI-Based Educational Products',
+        category: 'EDUCATION TECHNOLOGY',
+        featured: false,
+        description: 'Demonstrated AI-based educational products to schools, explained digital learning applications, and supported school management and teachers in understanding technology-enabled teaching methods.',
+        capabilities: [
+            'Product demonstrations of AI-based educational products for school management',
+            'Explained digital learning applications and technology-enabled teaching methods',
+            'Guided teachers and principals through AI integration in modern classrooms',
+            'Presented solutions aligned with each school’s business requirements'
+        ],
+        technologies: ['Product Demos', 'Digital Learning', 'AI Integration', 'Presentations'],
+        concepts: ['EdTech', 'Classroom Transformation', 'Teacher Enablement'],
+        link: '#projects',
+        icon: GraduationCap
+    },
+    {
+        id: 'student-analytics',
+        title: 'Student Performance Analytics',
+        subtitle: 'Academic Data & Insights',
+        category: 'EDUCATION TECHNOLOGY',
+        featured: false,
+        description: 'Introduced academic data analytics through student assessment reports, performance monitoring, learning-gap identification, and data-driven insights to support academic improvement.',
+        capabilities: [
+            'Student assessment reports and performance monitoring',
+            'Learning-gap identification from academic data',
+            'Data-driven insights for academic decision-making',
+            'Progress reporting for school management'
+        ],
+        technologies: ['Assessment Reports', 'Performance Monitoring', 'Analytics', 'MIS Reporting'],
+        concepts: ['Student Analytics', 'Data-Driven Decisions', 'Academic Improvement'],
+        link: '#projects',
+        icon: BarChart3
+    },
+    {
+        id: 'school-implementation',
+        title: 'School Implementation & Teacher Training',
+        subtitle: 'On-Site Rollout & Adoption',
+        category: 'EDUCATION TECHNOLOGY',
+        featured: false,
+        description: 'Coordinated on-site implementation activities with school management and teachers, communicated feedback to development teams, and conducted practical product training to support adoption.',
+        capabilities: [
+            'On-site implementation coordination with school management',
+            'Requirement and feedback communication to development teams',
+            'Practical face-to-face product training for teachers',
+            'Adoption support throughout the rollout'
+        ],
+        technologies: ['Implementation Coordination', 'User Training', 'Feedback Loops'],
+        concepts: ['Change Enablement', 'Product Adoption', 'Stakeholder Training'],
+        link: '#projects',
+        icon: Presentation
     }
 ];
 

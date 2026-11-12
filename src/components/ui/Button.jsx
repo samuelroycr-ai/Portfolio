@@ -6,6 +6,7 @@ const Button = ({
     variant = 'primary',
     size = 'md',
     className,
+    href,
     ...props
 }) => {
     const baseStyles = 'inline-flex items-center justify-center font-bold tracking-wider uppercase transition-all duration-300 rounded cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed';
@@ -22,13 +23,16 @@ const Button = ({
         lg: 'px-8 py-4 text-base',
     };
 
+    const Comp = href ? 'a' : 'button';
+
     return (
-        <button
+        <Comp
             className={cn(baseStyles, variants[variant], sizes[size], className)}
+            href={href}
             {...props}
         >
             {children}
-        </button>
+        </Comp>
     );
 };
 

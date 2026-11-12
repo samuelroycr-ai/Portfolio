@@ -5,7 +5,7 @@ import * as random from 'maath/random/dist/maath-random.esm';
 import Section from '../ui/Section';
 import Button from '../ui/Button';
 import TextReveal from '../ui/TextReveal';
-import { Linkedin, ArrowRight, Mail } from 'lucide-react';
+import { Linkedin, ArrowRight, Mail, Download } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 import OrbitalWrapper from '../ui/OrbitalWrapper';
 
@@ -104,6 +104,17 @@ const Hero = () => {
                                     className="group w-full md:w-auto"
                                 >
                                     Contact Me
+                                </Button>
+
+                                <Button
+                                    href="/Samuel_Roy_Resume.pdf"
+                                    download
+                                    variant="secondary"
+                                    size="lg"
+                                    className="group w-full md:w-auto"
+                                >
+                                    Resume
+                                    <Download size={18} className="ml-2 transition-transform group-hover:translate-y-0.5" />
                                 </Button>
 
                                 <div className="flex items-center gap-6 mt-4 md:mt-0">

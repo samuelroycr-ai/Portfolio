@@ -5,9 +5,10 @@ import { cn } from '../../utils/cn';
 import { Mail, Linkedin, FileText, ArrowUpRight } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 
-const ContactItem = ({ icon: Icon, label, value, href, isPrimary = false }) => (
+const ContactItem = ({ icon: Icon, label, value, href, isPrimary = false, download }) => (
     <a
         href={href}
+        download={download}
         target={href.startsWith('http') ? '_blank' : undefined}
         rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
         className={cn(
@@ -88,8 +89,9 @@ const Contact = () => {
                     <ContactItem
                         icon={FileText}
                         label="Professional Profile"
-                        value="Add Resume Link"
-                        href="#contact"
+                        value="Download Resume"
+                        href="/Samuel_Roy_Resume.pdf"
+                        download
                     />
                 </div>
             </div>
