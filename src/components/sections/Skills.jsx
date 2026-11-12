@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useMemo } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, useAnimationFrame, useScroll } from 'framer-motion';
 import Section from '../ui/Section';
 import TextReveal from '../ui/TextReveal';
@@ -92,6 +92,10 @@ const BASE_SCALE = 1.0;
 const MAX_SCALE = 1.15;
 const MAX_SHIFT = 10;
 
+const IS_MOBILE =
+    typeof window !== 'undefined' &&
+    (window.matchMedia('(pointer: coarse)').matches || window.matchMedia('(max-width: 768px)').matches);
+
 const TechCard = ({ name, description, icon: Icon, color, category, activeCategory, setActiveCategory, mouseX, mouseY }) => {
     const ref = useRef(null);
     const [rect, setRect] = useState(null);
@@ -155,8 +159,8 @@ const TechCard = ({ name, description, icon: Icon, color, category, activeCatego
         <motion.div
             ref={ref}
             style={{ scale, x, y, zIndex: isSystemActive ? 50 : 1 }}
-            onMouseEnter={() => setActiveCategory(category)}
-            onMouseLeave={() => setActiveCategory(null)}
+            onMouseEnter={() => { if (!IS_MOBILE) setActiveCategory(category); }}
+            onMouseLeave={() => { if (!IS_MOBILE) setActiveCategory(null); }}
             className={cn(
                 "group relative overflow-hidden rounded-md bg-zinc-900 border border-white/5 flex flex-col items-center justify-center p-2.5 transition-colors duration-300 cursor-none h-[90px] will-change-transform",
                 isSystemActive ? "border-white/20 shadow-lg" : "hover:border-white/10 hover:bg-white/[0.02]",
@@ -194,7 +198,7 @@ const CategoryGroup = ({ title, category, skills, color, activeCategory, setActi
     const secondarySkills = skills.filter(s => s.level === 'secondary');
 
     return (
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-full" data-scroll-category={category}>
             <h4 className={cn(
                 "text-[10px] font-mono uppercase tracking-widest mb-3 flex items-center gap-2",
                 activeCategory === category ? "text-white" : "text-gray-600"
@@ -257,21 +261,48 @@ const Skills = () => {
     const bgX = useSpring(mouseX, { stiffness: 50, damping: 20 });
     const bgY = useSpring(mouseY, { stiffness: 50, damping: 20 });
 
-    const isCoarsePointer = useMemo(() => {
-        if (typeof window === 'undefined') return false;
-        return (
-            window.matchMedia('(pointer: coarse)').matches ||
-            window.matchMedia('(max-width: 768px)').matches
-        );
-    }, []);
-
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ['start end', 'end start'],
     });
 
+    useEffect(() => {
+        if (!IS_MOBILE) return undefined;
+        let rafId = null;
+        const update = () => {
+            rafId = null;
+            const vh = window.innerHeight;
+            const bandTop = vh * 0.25;
+            const bandBottom = vh * 0.75;
+            let best = null;
+            let bestDist = Infinity;
+            document.querySelectorAll('[data-scroll-category]').forEach((el) => {
+                const r = el.getBoundingClientRect();
+                if (r.bottom <= bandTop || r.top >= bandBottom) return;
+                const dist = Math.abs((r.top + r.bottom) / 2 - vh / 2);
+                if (dist < bestDist) {
+                    bestDist = dist;
+                    best = el.getAttribute('data-scroll-category');
+                }
+            });
+            setActiveCategory((prev) => (prev === best ? prev : best));
+        };
+        const onScroll = () => {
+            if (rafId !== null) return;
+            rafId = requestAnimationFrame(update);
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll);
+        update();
+        return () => {
+            window.removeEventListener('scroll', onScroll);
+            window.removeEventListener('resize', onScroll);
+            if (rafId !== null) cancelAnimationFrame(rafId);
+        };
+    }, []);
+
     const handleMouseMove = (e) => {
-        if (isCoarsePointer) return;
+        if (IS_MOBILE) return;
         mouseX.set(e.clientX);
         mouseY.set(e.clientY);
     };
@@ -290,7 +321,7 @@ const Skills = () => {
         let localY;
         let alpha;
 
-        if (isCoarsePointer) {
+        if (IS_MOBILE) {
             localX = rect.width / 2;
             localY = rect.height * progress;
             alpha = 0.15;
