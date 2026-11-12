@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { cn } from '../../utils/cn';
 
-const Section = ({ children, id, className, fullWidth = false, ...props }) => {
+const Section = forwardRef(({ children, id, className, fullWidth = false, ...props }, ref) => {
     return (
         <section
+            ref={ref}
             id={id}
             className={cn('py-20 md:py-32 relative scroll-mt-20 md:scroll-mt-24', className)}
             {...props}
@@ -17,6 +18,8 @@ const Section = ({ children, id, className, fullWidth = false, ...props }) => {
             )}
         </section>
     );
-};
+});
+
+Section.displayName = 'Section';
 
 export default Section;

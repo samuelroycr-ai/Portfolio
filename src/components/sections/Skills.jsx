@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, useMotionValue, useSpring, useTransform, useAnimationFrame } from 'framer-motion';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
+import { motion, useMotionValue, useSpring, useTransform, useAnimationFrame, useScroll } from 'framer-motion';
 import Section from '../ui/Section';
 import TextReveal from '../ui/TextReveal';
 import { cn } from '../../utils/cn';
@@ -250,7 +250,6 @@ const CategoryGroup = ({ title, category, skills, color, activeCategory, setActi
 const Skills = () => {
     const [activeCategory, setActiveCategory] = useState(null);
     const containerRef = useRef(null);
-    const rectRef = useRef(null);
 
     const mouseX = useMotionValue(-1000);
     const mouseY = useMotionValue(-1000);
@@ -258,36 +257,46 @@ const Skills = () => {
     const bgX = useSpring(mouseX, { stiffness: 50, damping: 20 });
     const bgY = useSpring(mouseY, { stiffness: 50, damping: 20 });
 
-    const updateRect = () => {
-        if (containerRef.current) {
-            rectRef.current = containerRef.current.getBoundingClientRect();
-        }
-    };
+    const isCoarsePointer = useMemo(
+        () => typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches,
+        []
+    );
+
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ['start end', 'end start'],
+    });
 
     const handleMouseMove = (e) => {
-        if (!rectRef.current) {
-            updateRect();
-        }
         mouseX.set(e.clientX);
         mouseY.set(e.clientY);
-    };
-
-    const handleMouseEnter = () => {
-        updateRect();
     };
 
     const handleMouseLeave = () => {
         mouseX.set(-1000);
         mouseY.set(-1000);
-        rectRef.current = null;
     };
 
-    const bgGradient = useTransform([bgX, bgY], ([x, y]) => {
-        const rect = rectRef.current;
-        if (!rect || x === -1000) return 'none';
-        const localX = x - rect.left;
-        const localY = y - rect.top;
-        return `radial-gradient(600px circle at ${localX}px ${localY}px, rgba(20, 255, 100, 0.04), transparent 40%)`;
+    const bgGradient = useTransform([bgX, bgY, scrollYProgress], ([x, y, progress]) => {
+        const el = containerRef.current;
+        if (!el) return 'none';
+        const rect = el.getBoundingClientRect();
+
+        let localX;
+        let localY;
+
+        if (x !== -1000) {
+            localX = x - rect.left;
+            localY = y - rect.top;
+        } else if (isCoarsePointer) {
+            localX = rect.width / 2;
+            localY = rect.height * progress;
+        } else {
+            return 'none';
+        }
+
+        const alpha = isCoarsePointer ? 0.07 : 0.04;
+        return `radial-gradient(600px circle at ${localX}px ${localY}px, rgba(20, 255, 100, ${alpha}), transparent 40%)`;
     });
 
     const col1Ids = ["business-analysis", "project-management", "banking-finance", "compliance"];
@@ -300,7 +309,6 @@ const Skills = () => {
             className="bg-dark-bg min-h-screen flex items-center relative overflow-hidden"
             ref={containerRef}
             onMouseMove={handleMouseMove}
-            onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
             <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:40px_40px] opacity-20 pointer-events-none"></div>
